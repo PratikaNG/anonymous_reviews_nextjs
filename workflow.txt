@@ -38,4 +38,5 @@ End if
     => app->api->auth->[...nextauth]->options.ts and route.ts
     a. Providers->credentials and Configuration->callbacks in next auth docs
     c. options.ts file -> Bring in providers, pages, session and callbacks. -> create next-auth.d.ts file in types folder and declare the modules if you are getting errors in accessing user and session related things in callbacks.
+    d. routes.ts -> import authOptions from options.ts -> make "handler" function and export is as GET and POST->
 
