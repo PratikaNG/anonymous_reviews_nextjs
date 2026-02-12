@@ -1,0 +1,41 @@
+1. Create model folder in src and User.ts file in model => src->model->User.ts
+2. npm i mongoose and zod
+3. Write the usermodel
+4. Create a "schema" folder in src and create following files
+    a. signUpSchema.ts
+    b. verifySchema.ts
+    c. signInSchema.ts
+    d. acceptMessageSchema.ts
+    e. messageSchema.ts
+5. Write schemas in them using zod
+//DB connection
+6. Create lib folder and dbConnect.ts file and write dbConnection logic
+//Sign Up functionality
+7.Algorithm.logic
+// code should effectively handle both scenarios of regestering a  new user and updating an exisisting but unverified user with a new password and verification code
+If exisitingUserByEmail exsists then
+    If exisitingUserByEmail.isVerified then
+        success:false
+    else
+        save the updated user
+    End if
+else
+    create a new user with provided details
+    save the new user
+End if
+8.Create a file resend.ts in lib, 
+    a. get api key from resend's account (https://resend.com/)
+    b. npm install resend
+    c. Create email template -> you can refer resend's docs for nextjs
+    d. write export function by integrating api -> export const resend = new Resend(process.env.RESEND_API_KEY);
+9. Create emailTemplates folder in the project outside of src and create verificationEmail.tsx file
+    a. 
+    b. write a email template of your wish
+10. Create helpers folder in src and a file in it sendVerificationEmail.ts
+    a. Write the data object for the verification email
+//Next auth
+11.Create auth folder in api folder, [...nextauth] folder in auth folder and options.ts and routets files in [...nextauth]
+    => app->api->auth->[...nextauth]->options.ts and route.ts
+    a. Providers->credentials and Configuration->callbacks in next auth docs
+    c. options.ts file -> Bring in providers, pages, session and callbacks. -> create next-auth.d.ts file in types folder and declare the modules if you are getting errors in accessing user and session related things in callbacks.
+
