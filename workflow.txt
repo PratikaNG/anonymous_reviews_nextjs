@@ -33,10 +33,39 @@ End if
     b. write a email template of your wish
 10. Create helpers folder in src and a file in it sendVerificationEmail.ts
     a. Write the data object for the verification email
+11. Create signup route in api folder -> install bcryptjs
+    	Algorithm:
+	Code should effectively handle both scenarios of registering a new user and updating an existing but unverified user account with a new password and verification code.
+	
+	If existingUserByEmail exists then
+		If existingUserByEmail.isVerified then
+			success:false.
+		Else
+			 save the updated user
+		End if
+	Else
+		Create a new user with provided new details
+		Save the new user
+	End if
+	
+		a. Check if username is already verified and taken
+		b. Generate a random verifycode -> 
+		const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
+		c. Check if you user exists
+		d. If user exists -> 
+			i. Check if existingUserByEmail is verified or not
+			ii. If existingUserByEmail.isVerified-> return success:false, user already exists with this email
+			iii. Else -> hash the password -> update the password -> update new verify code -> update verifycode expiry -> save the updated user.
+		e. If user does not exist -> hash is password, expiryDate for verifyCode expiration -> save this new user into db.
+		f. Send verification email through email response 
+
 //Next auth
-11.Create auth folder in api folder, [...nextauth] folder in auth folder and options.ts and routets files in [...nextauth]
+12.Create auth folder in api folder, [...nextauth] folder in auth folder and options.ts and routets files in [...nextauth]
     => app->api->auth->[...nextauth]->options.ts and route.ts
     a. Providers->credentials and Configuration->callbacks in next auth docs
     c. options.ts file -> Bring in providers, pages, session and callbacks. -> create next-auth.d.ts file in types folder and declare the modules if you are getting errors in accessing user and session related things in callbacks.
     d. routes.ts -> import authOptions from options.ts -> make "handler" function and export is as GET and POST->
-
+13. Check if username is unique
+    a. create a "check-username-unique" folder in api folder and write the route.
+    b. Extract query params form the url
+    c. check if it is existingVerifiedUser and handle the case accordingly.
